@@ -1,4 +1,9 @@
 ---
+- name: install jmespath
+  pip: 
+    name: jmespath
+    become: True
+
 # Implement your Workload deployment tasks here
 # deploy individual argo instances for users
 - name: Install DevWorkspace Operator
