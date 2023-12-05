@@ -1,8 +1,8 @@
 ---
 - name: install jmespath
-  pip: 
+  pip:
     name: jmespath
-    become: True
+    executable: pip-3.9
 
 # Implement your Workload deployment tasks here
 # deploy individual argo instances for users
@@ -123,6 +123,6 @@
     namespace: openshift-config
     name: cluster
     patch:
-    - op: add
-      path: /spec/identityProviders/-
+    - op: merge
+      path: /spec
       value: "{{ lookup('file', 'oauth.patch.json' ) }}"
