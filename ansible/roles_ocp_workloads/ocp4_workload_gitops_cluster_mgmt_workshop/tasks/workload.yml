@@ -1,9 +1,4 @@
 ---
-- name: install jmespath
-  pip:
-    name: jmespath
-    executable: pip-3.9
-
 # Implement your Workload deployment tasks here
 # deploy individual argo instances for users
 - name: Install DevWorkspace Operator
@@ -117,6 +112,7 @@
       data:
         htpasswd: "{{ lookup('file', 'users.htpasswd' ) | b64encode }}"
 
+### bjeon - 수정
 - name: Patch the cluster OAuth with extra users
   kubernetes.core.k8s_json_patch:
     kind: OAuth
