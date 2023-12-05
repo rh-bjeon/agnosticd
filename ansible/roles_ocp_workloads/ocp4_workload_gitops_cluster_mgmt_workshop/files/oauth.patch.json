@@ -1,1 +1,1 @@
-{"identityProviders": {"htpasswd": {"fileData": {"name": "htpasswd-additional-users-secret"}}, "mappingMethod": "claim", "name": "standard-users", "type": "HTPasswd"}}
+{"identityProviders": [{"htpasswd": {"fileData": {"name": "htpasswd-additional-users-secret"}}, "mappingMethod": "claim", "name": "standard-users", "type": "HTPasswd"}]}
