@@ -119,6 +119,6 @@
     namespace: openshift-config
     name: cluster
     patch:
-    - op: merge
+    - op: add
       path: /spec
       value: "{{ lookup('file', 'oauth.patch.json' ) }}"
