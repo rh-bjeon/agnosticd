@@ -10,7 +10,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: lab-guide/
-    repoURL: 'https://github.com/rh-bjeon/2023-mad-ops-fork'
+    repoURL: 'https://rh-bjeon.github.io/mad-ops-acm/mad-ops-acm/main/m1-overview/setup.html'
     targetRevision: HEAD
   project: default
   syncPolicy:
