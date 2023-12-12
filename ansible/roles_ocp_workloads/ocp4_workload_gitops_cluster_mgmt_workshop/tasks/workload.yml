@@ -51,7 +51,7 @@
 - name: Patch the ArgoCD
   kubernetes.core.k8s:
     apply: yes
-    merge-type: merge
+    merge_type: merge
     definition:
       apiVersion: argoproj.io/v1alpha1
       kind: ArgoCD
