@@ -53,6 +53,7 @@
     apply: yes
     merge-type: merge
     definition:
+      apiVersion: argoproj.io/v1alpha1
       kind: ArgoCD
       metadata:
         name: openshift-gitops
