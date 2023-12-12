@@ -49,14 +49,36 @@
 
 ### bjeon - 수정
 - name: Patch the ArgoCD
-  kubernetes.core.k8s_json_patch:
+  kubernetes.core.k8s:
+    state: patched
     kind: ArgoCD
-    namespace: openshift-gitops
     name: openshift-gitops
-    patch:
-    - op: add
-      path: /spec
-      value: "{{ lookup('file', 'argocd.patch.json' ) }}"
+    namespace: openshift-gitops
+    definition:
+      spec:
+        kustomizeBuildOptions: '--enable-alpha-plugins --enable-helm'
+        repo:
+          env:
+          - name: KUSTOMIZE_PLUGIN_HOME
+            value: /etc/kustomize/plugin
+          initContainers:
+          - args:
+            - -c
+            - cp /etc/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator/PolicyGenerator
+              /policy-generator/PolicyGenerator
+            command:
+            - /bin/bash
+            image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel8:v<version>
+            name: policy-generator-install
+            volumeMounts:
+            - mountPath: /policy-generator
+              name: policy-generator
+          volumeMounts:
+          - mountPath: /etc/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator
+            name: policy-generator
+          volumes:
+          - emptyDir: {}
+            name: policy-generator
 
 - name: Install Web Terminal Operator
   include_role:
