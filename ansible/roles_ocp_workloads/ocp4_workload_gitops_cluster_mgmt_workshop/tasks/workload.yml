@@ -50,11 +50,13 @@
 ### bjeon - 수정
 - name: Patch the ArgoCD
   kubernetes.core.k8s:
-    state: patched
-    kind: ArgoCD
-    name: openshift-gitops
-    namespace: openshift-gitops
+    apply: yes
+    merge-type: merge
     definition:
+      kind: ArgoCD
+      metadata:
+        name: openshift-gitops
+        namespace: openshift-gitops
       spec:
         kustomizeBuildOptions: '--enable-alpha-plugins --enable-helm'
         repo:
